@@ -9,3 +9,8 @@
     @apply h-screen min-w-full flex flex-col items-center;
   }
 }
+
+#tsparticles {
+  height: 486px;
+  width: 396px;
+}
