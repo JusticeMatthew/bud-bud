@@ -4,16 +4,6 @@ if (process.browser) {
   require('pathseg');
 }
 
-// window.addEventListener('resize', function () {
-//   const container = Particles.domItem(0);
-
-//   if (!container) {
-//     return;
-//   }
-
-//   container.refresh();
-// });
-
 export default function ParticleBrain() {
   return (
     <Particles

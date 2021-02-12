@@ -21,7 +21,6 @@ export default function Home() {
           <h1 className='text-6xl text-light'>Home Page</h1>
         </div>
       </main>
-
       <Footer />
     </div>
   );
