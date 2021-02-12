@@ -2,15 +2,6 @@ import Particles from 'react-particles-js';
 
 if (process.browser) {
   require('pathseg');
-  // window.addEventListener('resize', function () {
-  //   const container = tsParticles.domItem(0);
-
-  //   if (!container) {
-  //     return;
-  //   }
-
-  //   container.refresh();
-  // });
 }
 
 // window.addEventListener('resize', function () {
