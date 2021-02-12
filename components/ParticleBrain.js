@@ -34,7 +34,7 @@ export default function ParticleBrain() {
               speed: 2,
               sync: false,
             },
-            value: 0.8,
+            value: 1,
           },
         },
         polygon: {
@@ -52,7 +52,7 @@ export default function ParticleBrain() {
           draw: {
             enable: true,
             stroke: {
-              color: 'rgba(255, 255, 255, .4)',
+              color: 'rgba(255, 255, 255, .5)',
             },
           },
         },
