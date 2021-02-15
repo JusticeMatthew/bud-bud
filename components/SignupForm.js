@@ -51,7 +51,11 @@ export default function LoginForm() {
         initialValues={initialFormValues}
         validate={validate}
         render={({ handleSubmit, values }) => (
-          <form onSubmit={handleSubmit} noValidate>
+          <form
+            onSubmit={handleSubmit}
+            noValidate
+            className='sm:w-3/4 lg:w-2/3'
+          >
             <CssTextField
               id='username'
               label='Username'

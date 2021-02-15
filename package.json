@@ -13,6 +13,7 @@
     "@material-ui/pickers": "^3.2.10",
     "axios": "^0.21.1",
     "final-form": "^4.20.1",
+    "mongodb": "^3.6.4",
     "mui-rff": "^3.0.3",
     "next": "10.0.6",
     "pathseg": "^1.2.0",
