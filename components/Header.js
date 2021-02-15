@@ -14,7 +14,11 @@ export default function Header() {
         </a>
       </Link>
       <div className='m-2 self-center flex flex-col sm:flex-row'>
-        <Button text='Sign up' />
+        <Link href='/signup'>
+          <a>
+            <Button text='Sign up' />
+          </a>
+        </Link>
         <Link href='/login'>
           <a>
             <Button text='Login' />

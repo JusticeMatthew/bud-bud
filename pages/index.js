@@ -13,7 +13,7 @@ export default function Home() {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <Header />
-      <main className='flex-grow ml-auto bg-main bg-repeat w-full flex flex-col items-center'>
+      <main className='flex-grow ml-auto w-full flex flex-col items-center'>
         <div className='w-full h-auto place-self-start bg-dark flex sm:flex-row justify-center flex-col items-center pb-7'>
           <div className='sm:w-1/2 sm:flex sm:flex-row-reverse sm:pr-10 h-auto'>
             <ParticleBrain />
@@ -26,7 +26,7 @@ export default function Home() {
             With <span className='text-accent'>BudBud</span>
           </h1>
         </div>
-        <button className='w-60 h-16 font-bold subpixel-antialiased bg-accent text-dark text-xl m-2 transition-all duration-200 hover:bg-dark hover:text-light ease-linear transform '>
+        <button className='w-60 h-16 font-bold subpixel-antialiased bg-accent text-dark text-xl m-2 transition-all duration-200 hover:bg-dark hover:text-light ease-linear transform rounded'>
           Sign up for Free
         </button>
       </main>

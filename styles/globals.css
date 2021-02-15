@@ -6,7 +6,7 @@
 
 @layer base {
   .container {
-    @apply h-screen min-w-full flex flex-col items-center;
+    @apply h-screen min-w-full flex flex-col items-center bg-main;
   }
 }
 
