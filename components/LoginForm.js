@@ -1,12 +1,10 @@
 import React from 'react';
 import { Form } from 'react-final-form';
 import { TextField } from 'mui-rff';
-import { withStyles } from '@material-ui/core';
+import { withStyles, Button } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import { Visibility, VisibilityOff } from '@material-ui/icons';
-
-import FormButton from './FormButton';
 
 const initialFormValues = {
   username: '',
@@ -37,6 +35,26 @@ const CssTextField = withStyles(() => ({
     },
   },
 }))(TextField);
+
+const CssButton = withStyles({
+  root: {
+    padding: '10px 40px',
+    backgroundColor: '#15DB95',
+    color: '#1F2833',
+    fontSize: '1.1rem',
+    fontWeight: 'bold',
+    '&:disabled': {
+      backgroundColor: '#f2f2f2',
+      color: '#1F2833',
+    },
+    '&:active': {
+      backgroundColor: '#15DB95',
+    },
+    '&:hover': {
+      backgroundColor: 'rgba(21, 219, 149, 0.8)',
+    },
+  },
+})(Button);
 
 export default function LoginForm() {
   const [vis, setVis] = React.useState(false);
@@ -97,10 +115,13 @@ export default function LoginForm() {
               }}
             />
             <div className='w-full h-20 flex justify-center items-end'>
-              <FormButton
+              <CssButton
                 disabled={!values.username || !values.password ? true : false}
                 text='Login'
-              />
+                type='submit'
+              >
+                Login
+              </CssButton>
             </div>
           </form>
         )}

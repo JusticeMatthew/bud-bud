@@ -1,14 +1,13 @@
 import React from 'react';
 import { Form } from 'react-final-form';
 import { TextField, makeValidate } from 'mui-rff';
-import { withStyles } from '@material-ui/core';
+import { withStyles, Button } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import { Visibility, VisibilityOff } from '@material-ui/icons';
 import axios from 'axios';
 
 import schema from '../validation/schema';
-import FormButton from './FormButton';
 
 const initialFormValues = {
   username: '',
@@ -40,6 +39,26 @@ const CssTextField = withStyles(() => ({
   },
 }))(TextField);
 
+const CssButton = withStyles({
+  root: {
+    padding: '10px 40px',
+    backgroundColor: '#15DB95',
+    color: '#1F2833',
+    fontSize: '1.1rem',
+    fontWeight: 'bold',
+    '&:disabled': {
+      backgroundColor: '#f2f2f2',
+      color: '#1F2833',
+    },
+    '&:active': {
+      backgroundColor: '#15DB95',
+    },
+    '&:hover': {
+      backgroundColor: 'rgba(21, 219, 149, 0.8)',
+    },
+  },
+})(Button);
+
 const validate = makeValidate(schema);
 
 export default function LoginForm() {
@@ -70,8 +89,6 @@ export default function LoginForm() {
     event.preventDefault();
   };
 
-  console.log(validate.error);
-
   return (
     <div
       className='md:w-2/3 lg:1/2 h-3/5 bg-dark text-light p-10 flex
@@ -82,12 +99,8 @@ export default function LoginForm() {
         onSubmit={onSubmit}
         initialValues={initialFormValues}
         validate={validate}
-        render={({ handleSubmit, values, pristine }) => (
-          <form
-            onSubmit={handleSubmit}
-            noValidate
-            className='sm:w-3/4 lg:w-2/3'
-          >
+        render={({ handleSubmit, values }) => (
+          <form onSubmit={handleSubmit} className='sm:w-3/4 lg:w-2/3'>
             <CssTextField
               id='username'
               label='Username'
@@ -140,7 +153,7 @@ export default function LoginForm() {
               }}
             />
             <div className='w-full h-20 flex justify-center items-end'>
-              <FormButton
+              <CssButton
                 disabled={
                   !values.password ||
                   !values.username ||
@@ -150,7 +163,11 @@ export default function LoginForm() {
                     : false
                 }
                 text='Signup'
-              />
+                variant='contained'
+                type='submit'
+              >
+                Signup
+              </CssButton>
             </div>
           </form>
         )}

@@ -1,5 +1,5 @@
 const { connectToDatabase } = require('../../util/mongodb');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 export default async (req, res) => {
   const { db } = await connectToDatabase();
@@ -18,17 +18,19 @@ export default async (req, res) => {
           username: username,
           password: hashedPass,
           registered: new Date().toUTCString(),
+          meds: [],
         });
-        res.status(201).json({ succes: true, message: 'User created.' });
+        res.status(201).json({ success: true, message: 'User created.' });
       })
       .catch((err) => {
         if (err.name === 'MongoError' && err.code === 11000) {
-          res
-            .status(409)
-            .json({ succes: false, message: 'Sorry, that username is taken.' });
+          res.status(409).json({
+            success: false,
+            message: 'Sorry, that username is taken.',
+          });
         } else {
           res.status(400).json({
-            succes: false,
+            success: false,
             message: `An unexpected error occured. Error name: ${err.name} | Error code: ${err.code}`,
           });
         }
