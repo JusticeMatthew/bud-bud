@@ -6,6 +6,8 @@ import IconButton from '@material-ui/core/IconButton';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import { Visibility, VisibilityOff } from '@material-ui/icons';
 
+import { login } from '../utils/auth';
+
 const initialFormValues = {
   username: '',
   password: '',
@@ -60,6 +62,7 @@ export default function LoginForm() {
   const [vis, setVis] = React.useState(false);
   const onSubmit = (values) => {
     console.log(values);
+    login();
   };
 
   const handleClickShowPassword = () => {

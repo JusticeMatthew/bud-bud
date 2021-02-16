@@ -1,5 +1,5 @@
-const { connectToDatabase } = require('../../util/mongodb');
-const bcrypt = require('bcryptjs');
+const { connectToDatabase } = require('../../utils/mongodb');
+const bcrypt = require('bcrypt');
 
 export default async (req, res) => {
   const { db } = await connectToDatabase();
