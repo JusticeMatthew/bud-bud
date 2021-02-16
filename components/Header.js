@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import Button from './Button';
+import HeaderButton from './HeaderButton';
 
 export default function Header() {
   return (
@@ -9,19 +9,19 @@ export default function Header() {
         <a>
           <div className='flex m-4'>
             <img height={45} width={45} src='/images/heart.png' />
-            <h2 className='ml-4 text-4xl text-light font-san'>BudBud</h2>
+            <h2 className='ml-4 text-4xl text-light font-sans'>BudBud</h2>
           </div>
         </a>
       </Link>
       <div className='m-2 self-center flex flex-col sm:flex-row'>
         <Link href='/signup'>
           <a>
-            <Button text='Sign up' />
+            <HeaderButton text='Sign up' />
           </a>
         </Link>
         <Link href='/login'>
           <a>
-            <Button text='Login' />
+            <HeaderButton text='Login' />
           </a>
         </Link>
       </div>

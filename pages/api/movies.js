@@ -1,14 +1,14 @@
-import { connectToDatabase } from '../../util/mongodb';
+const { connectToDatabase } = require('../../util/mongodb');
+const { ObjectId } = require('mongodb');
 
 export default async (req, res) => {
   const { db } = await connectToDatabase();
+  const { id } = req.body;
 
-  const movies = await db
-    .collection('movies')
-    .find({})
-    .sort({ metacritic: -1 })
-    .limit(20)
+  const users = await db
+    .collection('bb-users')
+    .find({ _id: ObjectId(id) })
     .toArray();
 
-  res.json(movies);
+  res.json(users);
 };
