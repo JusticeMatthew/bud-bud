@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Form } from 'react-final-form';
 import { TextField, makeValidate } from 'mui-rff';
 import { withStyles, Button } from '@material-ui/core';
@@ -62,8 +62,8 @@ const CssButton = withStyles({
 const validate = makeValidate(schema);
 
 export default function LoginForm() {
-  const [vis, setVis] = React.useState(false);
-  const [confirmVis, setConfirmVis] = React.useState(false);
+  const [vis, setVis] = useState(false);
+  const [confirmVis, setConfirmVis] = useState(false);
 
   const onSubmit = (values) => {
     console.log(values);

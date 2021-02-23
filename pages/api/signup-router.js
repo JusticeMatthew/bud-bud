@@ -6,13 +6,11 @@ export default async (req, res) => {
   const users = db.collection('bb-users');
   const { username, password } = req.body;
 
-  const BCRYPT_SALT_ROUNDS = 12;
-
   await users.createIndex({ username: 1 }, { unique: true });
 
   return new Promise((resolve, reject) => {
     bcrypt
-      .hash(password, BCRYPT_SALT_ROUNDS)
+      .hash(password, 12)
       .then(async (hashedPass) => {
         await users.insertOne({
           username: username,
