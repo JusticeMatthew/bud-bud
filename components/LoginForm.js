@@ -1,6 +1,10 @@
+// Functionality
+import { useRouter } from 'next/router';
 import React from 'react';
+import axios from 'axios';
 import { Form } from 'react-final-form';
 import { TextField } from 'mui-rff';
+// Style
 import { withStyles, Button } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
 import InputAdornment from '@material-ui/core/InputAdornment';
@@ -58,8 +62,20 @@ const CssButton = withStyles({
 
 export default function LoginForm() {
   const [vis, setVis] = React.useState(false);
+  const router = useRouter();
+
   const onSubmit = (values) => {
-    console.log(values);
+    if (typeof window !== 'undefined') {
+      axios
+        .post('/api/login-router', values)
+        .then((res) => {
+          localStorage.setItem('token', res.data.token);
+          router.push(`/profile/${res.data.username}`);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   };
 
   const handleClickShowPassword = () => {

@@ -8,17 +8,23 @@ import Footer from '../../components/Footer';
 
 export default function UserProfile() {
   const router = useRouter();
-  const { user, isLoading, isError } = useUser(router.query.user);
+  const { user, isLoading, isError } = useUser(router.query.userProfile);
 
   return (
     <div className='container'>
       <Head>
-        <title>{user.username}'s Buds</title>
+        <title>{/* put a spinner here :)*/}'s Buds</title>
       </Head>
       <Header />
       <main className='flex-grow w-full flex justify-center'>
         <div className='w-2/3 flex justify-center items-center'>
-          <h2>{user ? JSON.stringify(user) : 'You need to register'}</h2>
+          <h2 className='text-dark text-5xl'>
+            {isLoading
+              ? 'Loading'
+              : isError
+              ? ':('
+              : `Welcome ${user.username}`}
+          </h2>
         </div>
       </main>
       <Footer />

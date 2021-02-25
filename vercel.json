@@ -1,0 +1,15 @@
+{
+  "env": {
+    "SECRET_COOKIE_PASSWORD": "2gyZ3GDw3LHZQKDhPmPDL3sjREVRXPr8",
+    "JWT_SECRET": "ImTheBestSecretEver"
+  },
+  "build": {
+    "env": {
+      "SECRET_COOKIE_PASSWORD": "2gyZ3GDw3LHZQKDhPmPDL3sjREVRXPr8",
+      "JWT_SECRET": "ImTheBestSecretEver"
+    }
+  },
+  "github": {
+    "silent": true
+  }
+}

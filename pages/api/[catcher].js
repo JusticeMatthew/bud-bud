@@ -1,5 +1,7 @@
 export default function catcher(req, res) {
   res
     .status(404)
-    .json({ message: `${req.query.catcher} <-- not a valid endpoint.` });
+    .json({
+      message: `/api/${req.query.catcher} <-- is not a valid endpoint.`,
+    });
 }

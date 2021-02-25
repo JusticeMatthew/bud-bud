@@ -1,11 +1,14 @@
+// Functionality
+import { useRouter } from 'next/router';
 import React, { useState } from 'react';
+import axios from 'axios';
 import { Form } from 'react-final-form';
 import { TextField, makeValidate } from 'mui-rff';
+// Style
 import { withStyles, Button } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import { Visibility, VisibilityOff } from '@material-ui/icons';
-import axios from 'axios';
 
 import schema from '../validation/schema';
 
@@ -65,13 +68,13 @@ const validate = makeValidate(schema);
 export default function LoginForm() {
   const [vis, setVis] = useState(false);
   const [confirmVis, setConfirmVis] = useState(false);
+  const router = useRouter();
 
   const onSubmit = (values) => {
-    console.log(values);
     axios
       .post('/api/signup-router', values)
       .then((res) => {
-        console.log(res);
+        router.push(`/profile/${res.data.username}`);
       })
       .catch((err) => {
         console.log(err.response.data.message);
