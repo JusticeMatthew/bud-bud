@@ -13,9 +13,9 @@ export default async (req, res) => {
       const { db } = await connectToDatabase();
       const users = db.collection('bb-users');
       const user = await users.findOne({ username: username });
-      res.status(200).json(user);
+      return res.status(200).json(user);
     }
   } catch (e) {
-    res.status(401).json(e);
+    return res.status(401).json(e);
   }
 };
