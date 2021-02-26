@@ -21,6 +21,7 @@
     "mongodb": "^3.6.4",
     "mui-rff": "^3.0.3",
     "next": "10.0.6",
+    "next-mui": "^1.1.0",
     "pathseg": "^1.2.0",
     "postcss-flexbugs-fixes": "^5.0.2",
     "postcss-preset-env": "^6.7.0",

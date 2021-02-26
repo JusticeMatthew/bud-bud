@@ -1,17 +1,6 @@
 import { connectToDatabase } from '../../config/mongodb';
 import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
-import jwtSecret from '../../config/secret';
-
-function generateToken(user) {
-  const payload = {
-    username: user.username,
-  };
-  const options = {
-    expiresIn: '1d',
-  };
-  return jwt.sign(payload, jwtSecret, options);
-}
+import generateToken from '../../utils/tokenMaker';
 
 export default async function (req, res) {
   const { db } = await connectToDatabase();

@@ -1,6 +1,6 @@
 // Functionality
 import { useRouter } from 'next/router';
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { Form } from 'react-final-form';
 import { TextField } from 'mui-rff';
@@ -60,8 +60,9 @@ const CssButton = withStyles({
   },
 })(Button);
 
-export default function LoginForm() {
-  const [vis, setVis] = React.useState(false);
+export default function LoginForm({ setLoginError }) {
+  const [vis, setVis] = useState(false);
+
   const router = useRouter();
 
   const onSubmit = (values) => {
@@ -74,7 +75,7 @@ export default function LoginForm() {
           router.push(`/profile/${res.data.username}`);
         })
         .catch((err) => {
-          console.log(err);
+          setLoginError(err.response.data.message);
         });
     }
   };

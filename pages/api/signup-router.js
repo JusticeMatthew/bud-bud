@@ -1,5 +1,6 @@
 import { connectToDatabase } from '../../config/mongodb';
 import bcrypt from 'bcrypt';
+import generateToken from '../../utils/tokenMaker';
 
 export default async function (req, res) {
   const { db } = await connectToDatabase();
@@ -18,13 +19,12 @@ export default async function (req, res) {
           meds: [],
         })
         .then(async () => {
-          // change to token
-          // req.session.set('user', username);
-          // await req.session.save();
+          const token = generateToken(username);
           res.status(201).json({
             username: username,
             success: true,
             message: 'User created.',
+            token,
           });
         })
         .catch((err) => {

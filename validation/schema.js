@@ -11,7 +11,6 @@ const schema = yup.object({
     .string()
     .required('A password is required * ')
     .min(4, 'Must be at least 4 characters * ')
-    .max(36, 'Max length is 36 characters * ')
     .trim(),
   passwordConfirmation: yup
     .string()

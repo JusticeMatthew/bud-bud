@@ -1,28 +1,27 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import MUI from 'next-mui';
+import App from 'next/app';
 
 import '../styles/globals.css';
 
-export default function MyApp(props) {
-  const { Component, pageProps } = props;
+export default class extends App {
+  static async getInitialProps({ Component, ctx }) {
+    let pageProps = {};
 
-  React.useEffect(() => {
-    const jssStyles = document.querySelector('#jss-server-side');
-    if (jssStyles) {
-      jssStyles.parentElement.removeChild(jssStyles);
+    if (Component.getInitialProps) {
+      pageProps = await Component.getInitialProps(ctx);
     }
-  }, []);
 
-  return (
-    <React.Fragment>
-      <CssBaseline />
-      <Component {...pageProps} />
-    </React.Fragment>
-  );
+    return { pageProps };
+  }
+
+  render() {
+    const { Component, pageProps } = this.props;
+
+    return (
+      <MUI>
+        <Component {...pageProps} />
+      </MUI>
+    );
+  }
 }
-
-MyApp.propTypes = {
-  Component: PropTypes.elementType.isRequired,
-  pageProps: PropTypes.object.isRequired,
-};

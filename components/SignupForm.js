@@ -71,14 +71,18 @@ export default function SignupForm() {
   const router = useRouter();
 
   const onSubmit = (values) => {
-    axios
-      .post('/api/signup-router', values)
-      .then((res) => {
-        router.push(`/profile/${res.data.username}`);
-      })
-      .catch((err) => {
-        console.log(err.response.data.message);
-      });
+    if (typeof window !== 'undefined') {
+      axios
+        .post('/api/signup-router', values)
+        .then((res) => {
+          localStorage.setItem('BudBud_token', res.data.token);
+          localStorage.setItem('BudBud_user', res.data.username);
+          router.push(`/profile/${res.data.username}`);
+        })
+        .catch((err) => {
+          console.log(err.response.data.message);
+        });
+    }
   };
 
   const handleClickShowPassword = () => {
