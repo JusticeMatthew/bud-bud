@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import useUser from '../../hooks/useUser';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
+import LoginForm from '../../components/LoginForm';
 
 export default function UserProfile() {
   const router = useRouter();
@@ -18,13 +19,15 @@ export default function UserProfile() {
       <Header />
       <main className='flex-grow w-full flex justify-center'>
         <div className='w-2/3 flex justify-center items-center'>
-          <h2 className='text-dark text-5xl'>
-            {isLoading
-              ? 'Loading'
-              : isError
-              ? ':('
-              : `Welcome ${user.username}`}
-          </h2>
+          {user ? (
+            <>Welcome Back</>
+          ) : isLoading ? (
+            <>Spinner goes here</>
+          ) : (
+            <>
+              <LoginForm />
+            </>
+          )}
         </div>
       </main>
       <Footer />

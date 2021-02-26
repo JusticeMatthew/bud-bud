@@ -65,7 +65,7 @@ const CssButton = withStyles({
 
 const validate = makeValidate(schema);
 
-export default function LoginForm() {
+export default function SignupForm() {
   const [vis, setVis] = useState(false);
   const [confirmVis, setConfirmVis] = useState(false);
   const router = useRouter();
@@ -95,7 +95,7 @@ export default function LoginForm() {
 
   return (
     <div
-      className='md:w-2/3 lg:1/2 h-4/6 bg-dark text-light p-10 flex
+      className='md:w-2/3 lg:1/2 h-signup bg-dark text-light p-10 flex
      flex-col justify-center items-center rounded'
     >
       <h1 className='text-4xl font-sans'>Signup: </h1>

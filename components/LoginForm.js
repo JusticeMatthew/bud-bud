@@ -69,7 +69,8 @@ export default function LoginForm() {
       axios
         .post('/api/login-router', values)
         .then((res) => {
-          localStorage.setItem('token', res.data.token);
+          localStorage.setItem('BudBud_token', res.data.token);
+          localStorage.setItem('BudBud_user', res.data.username);
           router.push(`/profile/${res.data.username}`);
         })
         .catch((err) => {
@@ -88,7 +89,7 @@ export default function LoginForm() {
 
   return (
     <div
-      className='md:w-2/3 lg:1/2 h-1/2 bg-dark text-light p-10 flex
+      className='md:w-2/3 lg:1/2 h-login bg-dark text-light p-10 flex
      flex-col justify-center items-center rounded'
     >
       <h1 className='text-4xl font-sans'>Login: </h1>

@@ -1,36 +1,24 @@
 import useSWR from 'swr';
 import axios from 'axios';
 
-//token
-
-//decode token, to get the username
-
-//plug username to my SWR hook
-
-// const currentUser = () => {
-//   const token = typeof window !== 'undefined' && localStorage.getItem('token');
-//   if (!token) {
-//     return null;
-//   } else {
-//     jwt.verify(token, jwtSecret, (err, decoded) => {
-//       err ? null : decoded.payload.username;
-//     });
-//   }
-// };
-// console.log(currentUser());
-
 const fetcher = (url) =>
   axios
     .get(url, {
       headers: {
         Authorization:
-          typeof window !== 'undefined' && localStorage.getItem('token'),
+          typeof window !== 'undefined' && localStorage.getItem('BudBud_token'),
       },
     })
     .then((res) => res.data);
 
-export default function useUser(username) {
-  const { data, error } = useSWR(`/api/profile/${username}`, fetcher);
+function userGrabber() {
+  if (typeof window !== 'undefined') {
+    return localStorage.getItem('BudBud_user');
+  }
+}
+
+export default function useUser() {
+  const { data, error } = useSWR(`/api/profile/${userGrabber()}`, fetcher);
 
   return {
     user: data,
@@ -38,9 +26,3 @@ export default function useUser(username) {
     isError: error,
   };
 }
-
-// {
-//   headers: {
-//     Authorization:
-//       typeof window !== 'undefined' && localStorage.getItem('token'),
-//   },

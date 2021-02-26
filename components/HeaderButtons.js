@@ -2,7 +2,6 @@ import { withStyles, Button } from '@material-ui/core';
 
 const CssButton = withStyles({
   root: {
-    margin: '10px',
     width: '100px',
     backgroundColor: '#15DB95',
     color: '#1F2833',
@@ -20,6 +19,21 @@ const CssButton = withStyles({
   },
 })(Button);
 
-export default function HeaderButton({ text }) {
+const logout = () => {
+  if (typeof window !== 'undefined') {
+    localStorage.removeItem('BudBud_token');
+    localStorage.removeItem('BudBud_user');
+  }
+};
+
+export function HeaderButton({ text }) {
   return <CssButton variant='contained'>{text}</CssButton>;
+}
+
+export function HeaderLogoutButton({ text }) {
+  return (
+    <CssButton onClick={logout} variant='contained'>
+      {text}
+    </CssButton>
+  );
 }

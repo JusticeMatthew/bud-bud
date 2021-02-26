@@ -11,6 +11,10 @@ module.exports = {
       backgroundImage: () => ({
         main: 'url("/images/full-bloom.png")',
       }),
+      height: {
+        login: '420px',
+        signup: '550px',
+      },
     },
   },
   variants: {
