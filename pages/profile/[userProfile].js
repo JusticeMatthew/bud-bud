@@ -25,6 +25,7 @@ export default function UserProfile() {
             <>Spinner goes here</>
           ) : (
             <>
+              <h1>ERROR!</h1>
               <LoginForm />
             </>
           )}
