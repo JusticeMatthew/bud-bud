@@ -4,7 +4,7 @@ import useUser from '../hooks/useUser';
 import { HeaderButton, HeaderLogoutButton } from './HeaderButtons';
 
 export default function Header() {
-  const { user, isError } = useUser();
+  const { user } = useUser();
 
   return (
     <header className='flex w-full h-18 bg-dark opacity-1 justify-between items-center'>
@@ -17,7 +17,7 @@ export default function Header() {
         </a>
       </Link>
       <div className='m-2 self-center flex flex-col sm:flex-row'>
-        {user && !isError ? (
+        {user ? (
           <>
             <Link href={`/profile/${user.username}`}>
               <a className='m-2'>

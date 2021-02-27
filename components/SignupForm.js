@@ -65,7 +65,7 @@ const CssButton = withStyles({
 
 const validate = makeValidate(schema);
 
-export default function SignupForm() {
+export default function SignupForm({ setSignupError }) {
   const [vis, setVis] = useState(false);
   const [confirmVis, setConfirmVis] = useState(false);
   const router = useRouter();
@@ -80,7 +80,7 @@ export default function SignupForm() {
           router.push(`/profile/${res.data.username}`);
         })
         .catch((err) => {
-          console.log(err.response.data.message);
+          setSignupError(err.response.data.message);
         });
     }
   };
@@ -98,10 +98,7 @@ export default function SignupForm() {
   };
 
   return (
-    <div
-      className='md:w-2/3 lg:1/2 h-signup bg-dark text-light p-10 flex
-     flex-col justify-center items-center rounded'
-    >
+    <div className='md:w-2/3 lg:1/2 h-auto bg-dark text-light p-10 flex flex-col justify-center items-center rounded pt-12 pb-12 m-12 transition-transform duration-1000 ease-linear'>
       <h1 className='text-4xl font-sans'>Signup: </h1>
       <Form
         onSubmit={onSubmit}
@@ -109,6 +106,13 @@ export default function SignupForm() {
         validate={validate}
         render={({ handleSubmit, values }) => (
           <form onSubmit={handleSubmit} className='sm:w-3/4 lg:w-2/3'>
+            <CssTextField
+              id='name'
+              label='First Name'
+              name='name'
+              variant='outlined'
+              margin='normal'
+            />
             <CssTextField
               id='username'
               label='Username'

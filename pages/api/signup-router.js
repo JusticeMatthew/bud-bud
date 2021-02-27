@@ -5,7 +5,7 @@ import generateToken from '../../utils/tokenMaker';
 export default async function (req, res) {
   const { db } = await connectToDatabase();
   const users = db.collection('bb-users');
-  const { username, password } = req.body;
+  const { name, username, password } = req.body;
 
   await users.createIndex({ username: 1 }, { unique: true });
 
@@ -13,6 +13,7 @@ export default async function (req, res) {
     bcrypt.hash(password, 12).then(async (hashedPass) => {
       await users
         .insertOne({
+          name: name,
           username: username,
           password: hashedPass,
           registered: new Date().toUTCString(),

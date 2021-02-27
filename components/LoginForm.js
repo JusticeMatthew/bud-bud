@@ -62,7 +62,6 @@ const CssButton = withStyles({
 
 export default function LoginForm({ setLoginError }) {
   const [vis, setVis] = useState(false);
-
   const router = useRouter();
 
   const onSubmit = (values) => {
@@ -90,19 +89,15 @@ export default function LoginForm({ setLoginError }) {
 
   return (
     <div
-      className='md:w-2/3 lg:1/2 h-login bg-dark text-light p-10 flex
-     flex-col justify-center items-center rounded'
+      className='w-80 md:w-2/3 lg:1/2 h-auto bg-dark text-light p-10 flex
+     flex-col justify-center items-center rounded pt-12 pb-12 m-12'
     >
       <h1 className='text-4xl font-sans'>Login: </h1>
       <Form
         onSubmit={onSubmit}
         initialValues={initialFormValues}
         render={({ handleSubmit, values }) => (
-          <form
-            onSubmit={handleSubmit}
-            noValidate
-            className='sm:w-3/4 lg:w-2/3'
-          >
+          <form onSubmit={handleSubmit} noValidate>
             <CssTextField
               id='username'
               label='Username'

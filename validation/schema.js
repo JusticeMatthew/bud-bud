@@ -1,6 +1,7 @@
 import * as yup from 'yup';
 
 const schema = yup.object({
+  name: yup.string().required('First name is required *').trim(),
   username: yup
     .string()
     .required('A username is required * ')
