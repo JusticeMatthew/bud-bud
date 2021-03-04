@@ -1,6 +1,6 @@
-import { connectToDatabase } from '../../../config/mongodb';
+import { connectToDatabase } from '../config/mongodb';
 import jwt from 'jsonwebtoken';
-import jwtSecret from '../../../config/secret';
+import jwtSecret from '../config/secret';
 
 export default async (req, res) => {
   const token = req.headers.authorization;

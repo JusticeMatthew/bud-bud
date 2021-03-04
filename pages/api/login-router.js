@@ -1,4 +1,4 @@
-import { connectToDatabase } from '../../config/mongodb';
+import { connectToDatabase } from './config/mongodb';
 import bcrypt from 'bcrypt';
 import generateToken from '../../utils/tokenMaker';
 

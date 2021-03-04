@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import jwtSecret from '../config/secret';
+import jwtSecret from '../pages/api/config/secret';
 
 export default function generateToken(user) {
   const payload = {
