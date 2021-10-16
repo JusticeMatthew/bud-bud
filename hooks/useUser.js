@@ -18,11 +18,15 @@ function userGrabber() {
 }
 
 export default function useUser() {
-  const { data, error } = useSWR(`/api/profile/${userGrabber()}`, fetcher);
+  const { data, error, mutate } = useSWR(
+    `/api/profile/${userGrabber()}`,
+    fetcher,
+  );
 
   return {
     user: data,
     isLoading: !error && !data,
     isError: error,
+    mutate: mutate,
   };
 }

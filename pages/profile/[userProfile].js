@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useRouter } from 'next/router';
 import Head from 'next/head';
 import {
   Button,
@@ -18,6 +17,7 @@ import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import LoadingProfile from '../../components/LoadingProfile';
 import ProfileError from '../../components/ProfileError';
+import BudCard from '../../components/BudCard';
 
 const CssButton = withStyles({
   root: {
@@ -65,13 +65,15 @@ const CssTextField = withStyles(() => ({
 }))(TextField);
 
 export default function UserProfile() {
-  const { user, isLoading, isError } = useUser();
-  const router = useRouter();
+  const { user, isLoading, isError, mutate } = useUser();
 
   const [open, setOpen] = useState(false);
   const [newbud, setNewbud] = useState({
     name: '',
     location: '',
+    type: '',
+    price: '',
+    notes: '',
   });
 
   const handleChange = (e) => {
@@ -85,6 +87,13 @@ export default function UserProfile() {
     setOpen(true);
   };
   const handleClose = () => {
+    setNewbud({
+      name: '',
+      location: '',
+      type: '',
+      price: '',
+      notes: '',
+    });
     setOpen(false);
   };
 
@@ -109,7 +118,11 @@ export default function UserProfile() {
           setNewbud({
             name: '',
             location: '',
+            type: '',
+            price: '',
+            notes: '',
           });
+          mutate(user);
         })
         .catch((error) => {
           window.alert(error.message);
@@ -165,6 +178,7 @@ export default function UserProfile() {
                 variant='outlined'
                 value={newbud.name}
                 onChange={handleChange}
+                inputProps={{ maxLength: 15 }}
               />
               <CssTextField
                 margin='dense'
@@ -174,6 +188,39 @@ export default function UserProfile() {
                 fullWidth
                 variant='outlined'
                 value={newbud.location}
+                onChange={handleChange}
+                inputProps={{ maxLength: 20 }}
+              />
+              <CssTextField
+                margin='dense'
+                name='type'
+                id='type'
+                label='Type of Medicine'
+                fullWidth
+                variant='outlined'
+                value={newbud.type}
+                onChange={handleChange}
+                inputProps={{ maxLength: 20 }}
+              />
+              <CssTextField
+                margin='dense'
+                name='price'
+                id='price'
+                label='Price'
+                fullWidth
+                variant='outlined'
+                value={newbud.price}
+                onChange={handleChange}
+                inputProps={{ maxLength: 10 }}
+              />
+              <CssTextField
+                margin='dense'
+                name='notes'
+                id='notes'
+                label='Notes'
+                fullWidth
+                variant='outlined'
+                value={newbud.notes}
                 onChange={handleChange}
               />
             </DialogContent>
@@ -193,13 +240,8 @@ export default function UserProfile() {
         </div>
 
         <div className='h-full w-full flex flex-wrap justify-center'>
-          {user.meds.map((bud, index) => (
-            <div
-              key={index}
-              className='w-1/6 h-96 mx-3 my-8 rounded bg-dark text-light'
-            >
-              <div className='w-full text-center text-2xl p-2'>{bud.name}</div>
-            </div>
+          {user.meds.map((bud) => (
+            <BudCard bud={bud} key={bud.id} />
           ))}
         </div>
       </main>
