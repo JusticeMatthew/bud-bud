@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import {
   Card,
   CardContent,
+  CardActions,
   Button,
   withStyles,
   Modal,
@@ -27,18 +28,6 @@ const CssButton = withStyles({
   },
 })(Button);
 
-const modalStyle = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
-  boxShadow: 24,
-  p: 4,
-};
-
 export default function BudCard({ bud }) {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -55,7 +44,7 @@ export default function BudCard({ bud }) {
           margin: 18,
         }}
       >
-        <CardContent>
+        <CardContent style={{ height: 175 }}>
           <div className='flex flex-col justify-between'>
             <h2 className='text-light text-2xl self-center'>{bud.name}</h2>
           </div>
@@ -64,9 +53,10 @@ export default function BudCard({ bud }) {
             <p>Type of Medicine: {bud.type}</p>
             <p>Price: {bud.price}</p>
           </div>
-
-          <CssButton onClick={handleOpen}>Details</CssButton>
         </CardContent>
+        <CardActions className='mx-3'>
+          <CssButton onClick={handleOpen}>Details</CssButton>
+        </CardActions>
       </Card>
       <Modal open={open} onClose={handleClose}>
         <Card
