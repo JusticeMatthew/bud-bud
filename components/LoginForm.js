@@ -67,6 +67,7 @@ export default function LoginForm({ setLoginError }) {
   const router = useRouter();
 
   const onSubmit = (values) => {
+    setLoading(true);
     if (typeof window !== 'undefined') {
       axios
         .post('/api/login-router', values)
@@ -74,9 +75,11 @@ export default function LoginForm({ setLoginError }) {
           localStorage.setItem('BudBud_token', res.data.token);
           localStorage.setItem('BudBud_user', res.data.username);
           router.push(`/profile/${res.data.username}`);
+          setLoading(false);
         })
         .catch((err) => {
           setLoginError(err.response.data.message);
+          setLoading(false);
         });
     }
   };
