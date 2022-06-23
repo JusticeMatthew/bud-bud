@@ -6,7 +6,6 @@ import {
   Dialog,
   DialogActions,
   DialogContent,
-  DialogContentText,
   DialogTitle,
   withStyles,
 } from '@material-ui/core';
@@ -240,8 +239,8 @@ export default function UserProfile() {
         </div>
 
         <div className='h-full w-full flex flex-wrap justify-center'>
-          {user.meds.map((bud) => (
-            <BudCard bud={bud} key={bud.id} />
+          {user.meds.map((bud, index) => (
+            <BudCard bud={bud} key={bud.id} index={index} />
           ))}
         </div>
       </main>
