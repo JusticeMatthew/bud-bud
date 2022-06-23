@@ -133,6 +133,7 @@ export default function SignupForm({ setSignupError }) {
             />
             <CssTextField
               id='password'
+              autoComplete='new-password'
               label='Password'
               name='password'
               variant='outlined'
@@ -155,6 +156,7 @@ export default function SignupForm({ setSignupError }) {
             />
             <CssTextField
               id='password confirmation'
+              autoComplete='new-password'
               label='Confirm Password'
               name='passwordConfirmation'
               variant='outlined'
