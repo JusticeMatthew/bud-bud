@@ -23,6 +23,7 @@
     "dotenv": "^8.2.0",
     "final-form": "^4.20.1",
     "jsonwebtoken": "^8.5.1",
+    "lottie-react": "^2.3.1",
     "mongodb": "^3.6.4",
     "mui-rff": "^3.0.3",
     "next": "10.0.6",

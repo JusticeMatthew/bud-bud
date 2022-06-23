@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Form } from 'react-final-form';
 import { TextField, makeValidate } from 'mui-rff';
+import Lottie from 'lottie-react';
 // Style
 import { withStyles, Button } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
@@ -68,19 +69,23 @@ const validate = makeValidate(schema);
 export default function SignupForm({ setSignupError }) {
   const [vis, setVis] = useState(false);
   const [confirmVis, setConfirmVis] = useState(false);
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   const onSubmit = (values) => {
     if (typeof window !== 'undefined') {
+      setLoading(true);
       axios
         .post('/api/signup-router', values)
         .then((res) => {
           localStorage.setItem('BudBud_token', res.data.token);
           localStorage.setItem('BudBud_user', res.data.username);
           router.push(`/profile/${res.data.username}`);
+          setLoading(false);
         })
         .catch((err) => {
           setSignupError(err.response.data.message);
+          setLoading(false);
         });
     }
   };
@@ -97,7 +102,13 @@ export default function SignupForm({ setSignupError }) {
     event.preventDefault();
   };
 
-  return (
+  return loading ? (
+    <Lottie
+      animationData={require('../public/spinner.json')}
+      loop={true}
+      style={{ width: '40%' }}
+    />
+  ) : (
     <div className='md:w-2/3 lg:1/2 h-auto bg-dark text-light p-10 flex flex-col justify-center items-center rounded pt-12 pb-12 m-12 transition-transform duration-1000 ease-linear'>
       <h1 className='text-4xl font-sans'>Signup: </h1>
       <Form

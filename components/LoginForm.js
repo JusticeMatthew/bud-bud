@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Form } from 'react-final-form';
 import { TextField } from 'mui-rff';
+import Lottie from 'lottie-react';
 // Style
 import { withStyles, Button } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
@@ -62,6 +63,7 @@ const CssButton = withStyles({
 
 export default function LoginForm({ setLoginError }) {
   const [vis, setVis] = useState(false);
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   const onSubmit = (values) => {
@@ -87,7 +89,13 @@ export default function LoginForm({ setLoginError }) {
     event.preventDefault();
   };
 
-  return (
+  return loading ? (
+    <Lottie
+      animationData={require('../public/spinner.json')}
+      loop={true}
+      style={{ width: '40%' }}
+    />
+  ) : (
     <div
       className='w-80 md:w-2/3 lg:1/2 h-auto bg-dark text-light p-10 flex
      flex-col justify-center items-center rounded pt-12 pb-12 m-12'
